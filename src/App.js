@@ -1,57 +1,21 @@
 import { Component } from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import './styles.css';
 
-import { getTrending } from './services/apiService';
-
 import HomePage from './components/HomePage';
+import MovieDetailsPage from './components/MovieDetailsPage';
 
 class App extends Component {
-  state = {
-    trending: [],
-    page: 1,
-  };
-
-  maxPages = 0;
-
-  componentDidMount(prevProps, prevState) {
-    this.getTrendingHandler();
-  }
-
-  getTrendingHandler = async () => {
-    const { trending, page } = this.state;
-    // this.setState({ isLoading: true, error: '' });
-    try {
-      const result = await getTrending(page);
-      console.log(result, 'result trending');
-      if (result.total_results !== 0) {
-        this.maxPages = result.total_pages;
-
-        this.setState(() => ({
-          trending: [...trending, ...result.results],
-        }));
-      } else {
-        // console.log('Not found');
-        this.maxPages = 0;
-        this.setState(() => ({
-          trending: [],
-          page: 1,
-          // error: 'No results were found for your search.',
-        }));
-      }
-    } catch (error) {
-      console.error(error);
-      // this.setState(() => ({ error: error.toString() }));
-      // } finally {
-      //   this.setState({ isLoading: false });
-
-      //   // this.scrollToHandler();
-    }
-  };
-
   render() {
     return (
       <div className="App">
-        <HomePage trending={this.state.trending} />
+        {/* <HomePage trending={this.state.trending} /> */}
+        <Switch>
+          <Route path="/" exact component={HomePage} />
+          <Route path="/about" component={MovieDetailsPage} />
+          {/* <Route path="/contact" component={Contact} /> */}
+          <Redirect to="/" />
+        </Switch>
       </div>
     );
   }
