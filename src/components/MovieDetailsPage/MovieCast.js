@@ -35,7 +35,7 @@ class MovieCast extends Component {
                 ></img>
                 <div className="CastItemInfo">
                   <p className="CastItemTitle">{name}</p>
-                  <p className="CastItemCharacter">{character}</p>
+                  <p className="CastItemCharacter">Character: {character}</p>
                 </div>
               </li>
             );

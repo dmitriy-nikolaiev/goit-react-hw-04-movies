@@ -31,8 +31,8 @@ const App = () => (
     </Switch>
 
     <footer className="Footer">
-      <span className="CopyrightText">Source</span>
-      <img className="CopyrightLogo" src={logo} alt="TMDb logo" width="32"></img>
+      <span className="CopyrightText">Source:</span>
+      <img className="CopyrightLogo" src={logo} alt="TMDb logo" width="42"></img>
     </footer>
   </div>
 );
