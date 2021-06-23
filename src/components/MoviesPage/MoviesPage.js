@@ -9,9 +9,10 @@ class MoviesPage extends Component {
     page: 1,
     movies: [],
     inputValue: '',
+    error: '',
   };
   maxPages = 0;
-
+  error = '';
   // componentDidUpdate(prevState) {
   //   if (prevState.searchString !== this.state.searchString || prevState.page !== this.state.page) {
   //     console.log(prevState.searchString, 'prevState.searchString');
@@ -41,13 +42,13 @@ class MoviesPage extends Component {
 
   movieSearch = async () => {
     const { searchString, page } = this.state;
-    if (searchString === '') {
-      console.log('searchString Empty');
-      return;
-    }
+    // if (searchString === '') {
+    //   console.log('searchString Empty');
+    //   return;
+    // }
     try {
       const response = await searchMoviesAPI(searchString, page);
-      console.log(response, 'response MoviesPage');
+      // console.log(response, 'response MoviesPage');
       if (response.total_results !== 0) {
         this.maxPages = response.total_pages;
 
@@ -60,7 +61,7 @@ class MoviesPage extends Component {
         this.setState(() => ({
           movies: [],
           page: 1,
-          // error: 'No results were found for your search.',
+          error: 'No results were found for your search.',
         }));
       }
     } catch (error) {
@@ -90,9 +91,10 @@ class MoviesPage extends Component {
             return (
               <li key={movie.id} className="MoviesListItem">
                 <Link to={`/movies/${movie.id}`} className="Link">
-                  <span className="MoviesListItemTitle">{`${movie.title} (${new Date(
-                    movie.release_date
-                  ).getFullYear()})`}</span>
+                  <span className="MoviesListItemTitle">
+                    {movie.title}
+                    {movie.release_date ? ` (${new Date(movie.release_date).getFullYear()})` : ''}
+                  </span>
                 </Link>
               </li>
             );

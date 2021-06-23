@@ -20,7 +20,6 @@ class HomePage extends Component {
     // this.setState({ isLoading: true, error: '' });
     try {
       const response = await getTrendingAPI(page);
-      console.log('response trending');
       if (response.total_results !== 0) {
         this.maxPages = response.total_pages;
 

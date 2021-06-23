@@ -21,7 +21,7 @@ class MovieDetailsPage extends Component {
     const { movieId } = this.props.match.params;
     try {
       const response = await getMovieDetailsAPI(movieId);
-      console.log(response, 'response getMovieDetails');
+      // console.log(response, 'response getMovieDetails');
       this.setState({ ...response });
     } catch (error) {
       console.error(error);
@@ -31,7 +31,7 @@ class MovieDetailsPage extends Component {
   }
 
   render() {
-    console.log('render MovieDetails');
+    // console.log('render MovieDetails');
     const { id, poster_path, title, genres, release_date, overview, vote_average } = this.state;
     return (
       <div className="MovieDetailsContainer">
@@ -47,7 +47,7 @@ class MovieDetailsPage extends Component {
           <h3>Genres</h3>
           <p>{genres.map((genre) => genre.name).join(' ')}</p>
         </div>
-        <div className="AddInfoContainer">
+        <div className="AddInfoMenu">
           <p>Additional information</p>
           <ul>
             <li>

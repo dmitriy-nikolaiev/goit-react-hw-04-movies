@@ -5,6 +5,8 @@ import HomePage from './components/HomePage';
 import MoviesPage from './components/MoviesPage';
 import MovieDetailsPage from './components/MovieDetailsPage';
 
+import logo from './images/blue_square_2.svg';
+
 const App = () => (
   <div className="App">
     <ul className="NavMenu">
@@ -27,6 +29,11 @@ const App = () => (
       {/* <Route path="/contact" component={Contact} /> */}
       <Redirect to="/" />
     </Switch>
+
+    <footer className="Footer">
+      <span className="CopyrightText">Source</span>
+      <img className="CopyrightLogo" src={logo} alt="TMDb logo" width="32"></img>
+    </footer>
   </div>
 );
 

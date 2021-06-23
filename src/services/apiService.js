@@ -21,19 +21,24 @@ export const getTrendingAPI = async () => {
   return result;
 };
 
-// export const getMovieDetailsAPI = async (movieId, addInfo = '') => {
-//   const queryString = `${BASE_URL}movie/${movieId}${!addInfo || '/' + addInfo}?api_key=${API_KEY}`;
-export const getMovieDetailsAPI = async (movieId, addInfo = '', page = 0) => {
-  const queryString = `${BASE_URL}movie/${movieId}${!addInfo || '/' + addInfo}?api_key=${API_KEY}${
-    page === 0 ? '' : page
-  }`;
-  console.log(queryString, 'queryString getMovieDetailsAPI');
+export const getMovieDetailsAPI = async (movieId) => {
+  const queryString = `${BASE_URL}movie/${movieId}?api_key=${API_KEY}`;
+  // export const getMovieDetailsAPI = async (movieId, addInfo = '', page = 0) => {
+  //   const queryString = `${BASE_URL}movie/${movieId}${!addInfo || '/' + addInfo}?api_key=${API_KEY}${
+  //     page === 0 ? '' : page
+  //   }`;
   const result = await fetchData(queryString);
 
   return result;
 };
 
-export const getCastAPI = async (movieId) => {};
+export const getAddInfoAPI = async (movieId, addInfoType) => {
+  const queryString = `${BASE_URL}movie/${movieId}/${addInfoType}?api_key=${API_KEY}`;
+  console.log(queryString, 'queryString getAddInfoAPI');
+  const result = await fetchData(queryString);
+
+  return result;
+};
 
 export const searchMoviesAPI = async (searchString, page = 1) => {
   const queryString = `${BASE_URL}search/movie?api_key=${API_KEY}&query=${searchString}&page=${page}&include_adult=false`;
