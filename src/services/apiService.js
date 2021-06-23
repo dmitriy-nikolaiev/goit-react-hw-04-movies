@@ -13,7 +13,7 @@ const fetchData = async (queryString) => {
   return result;
 };
 
-export const getTrending = async () => {
+export const getTrendingAPI = async () => {
   const queryString = `${BASE_URL}trending/movie/day?api_key=${API_KEY}`;
 
   const result = await fetchData(queryString);
@@ -21,7 +21,21 @@ export const getTrending = async () => {
   return result;
 };
 
-export const searchMovies = async (searchString, page = 1) => {
+// export const getMovieDetailsAPI = async (movieId, addInfo = '') => {
+//   const queryString = `${BASE_URL}movie/${movieId}${!addInfo || '/' + addInfo}?api_key=${API_KEY}`;
+export const getMovieDetailsAPI = async (movieId, addInfo = '', page = 0) => {
+  const queryString = `${BASE_URL}movie/${movieId}${!addInfo || '/' + addInfo}?api_key=${API_KEY}${
+    page === 0 ? '' : page
+  }`;
+  console.log(queryString, 'queryString getMovieDetailsAPI');
+  const result = await fetchData(queryString);
+
+  return result;
+};
+
+export const getCastAPI = async (movieId) => {};
+
+export const searchMoviesAPI = async (searchString, page = 1) => {
   const queryString = `${BASE_URL}search/movie?api_key=${API_KEY}&query=${searchString}&page=${page}&include_adult=false`;
 
   const result = await fetchData(queryString);

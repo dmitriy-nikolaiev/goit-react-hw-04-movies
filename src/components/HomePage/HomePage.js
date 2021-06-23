@@ -1,7 +1,7 @@
 import { Component } from 'react';
 // import { Switch, Route, Redirect } from 'react-router-dom';
-
-import { getTrending } from '../../services/apiService';
+import { Link } from 'react-router-dom';
+import { getTrendingAPI } from '../../services/apiService';
 
 class HomePage extends Component {
   state = {
@@ -19,13 +19,13 @@ class HomePage extends Component {
     const { trending, page } = this.state;
     // this.setState({ isLoading: true, error: '' });
     try {
-      const result = await getTrending(page);
-      console.log(result, 'result trending');
-      if (result.total_results !== 0) {
-        this.maxPages = result.total_pages;
+      const response = await getTrendingAPI(page);
+      console.log('response trending');
+      if (response.total_results !== 0) {
+        this.maxPages = response.total_pages;
 
         this.setState(() => ({
-          trending: [...trending, ...result.results],
+          trending: [...trending, ...response.results],
         }));
       } else {
         // console.log('Not found');
@@ -50,11 +50,13 @@ class HomePage extends Component {
     return (
       <div className="HomePageContainer">
         <h2 className="HomePageTitle">Trending today</h2>
-        <ul className="TrendingList">
+        <ul className="MoviesList">
           {this.state.trending.map((item) => {
             return (
-              <li key={item.id} className="TrendingListItem">
-                <span className="TrendingItemTitle">{item.title}</span>
+              <li key={item.id} className="MoviesListItem">
+                <Link to={`/movies/${item.id}`} className="Link">
+                  <span className="MoviesListItemTitle">{item.title}</span>
+                </Link>
               </li>
               // <li key={item.id} className="TrendingListItem">
               //   <p className="TrendingItemTitle">{item.title}</p>
