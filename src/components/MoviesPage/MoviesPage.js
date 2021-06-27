@@ -9,10 +9,10 @@ class MoviesPage extends Component {
     page: 1,
     movies: [],
     inputValue: '',
-    error: '',
+    error: null,
   };
   maxPages = 0;
-  error = '';
+  // error = '';
   // componentDidUpdate(prevState) {
   //   if (prevState.searchString !== this.state.searchString || prevState.page !== this.state.page) {
   //     console.log(prevState.searchString, 'prevState.searchString');
@@ -34,6 +34,7 @@ class MoviesPage extends Component {
       this.setState(
         () => ({
           searchString: this.state.inputValue.trim(),
+          error: null,
         }),
         this.movieSearch
       );
@@ -56,7 +57,7 @@ class MoviesPage extends Component {
           movies: [...response.results],
         }));
       } else {
-        console.log('Not found');
+        // console.log('Not found');
         this.maxPages = 0;
         this.setState(() => ({
           movies: [],
@@ -66,10 +67,16 @@ class MoviesPage extends Component {
       }
     } catch (error) {
       console.error(error);
+      this.setState(() => ({
+        movies: [],
+        page: 1,
+        error: error.toString(),
+      }));
     }
   };
 
   render() {
+    const { movies, error, inputValue } = this.state;
     return (
       <div className="MoviesContainer">
         <form className="SearchForm" onSubmit={this.submitHandler}>
@@ -80,26 +87,30 @@ class MoviesPage extends Component {
             autoFocus
             placeholder="Search movies"
             onChange={this.changeHandler}
-            value={this.state.inputValue}
+            value={inputValue}
           />
           <button type="submit" className="SearchForm-button">
             <span className="SearchForm-button-label">Search</span>
           </button>
         </form>
-        <ul className="MoviesList">
-          {this.state.movies.map((movie) => {
-            return (
-              <li key={movie.id} className="MoviesListItem">
-                <Link to={`/movies/${movie.id}`} className="Link">
-                  <span className="MoviesListItemTitle">
-                    {movie.title}
-                    {movie.release_date ? ` (${new Date(movie.release_date).getFullYear()})` : ''}
-                  </span>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+        {error ? (
+          <div>{error}</div>
+        ) : (
+          <ul className="MoviesList">
+            {movies.map((movie) => {
+              return (
+                <li key={movie.id} className="MoviesListItem">
+                  <Link to={`/movies/${movie.id}`} className="Link">
+                    <span className="MoviesListItemTitle">
+                      {movie.title}
+                      {movie.release_date ? ` (${new Date(movie.release_date).getFullYear()})` : ''}
+                    </span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        )}
       </div>
     );
   }

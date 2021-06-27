@@ -34,7 +34,7 @@ export const getMovieDetailsAPI = async (movieId) => {
 
 export const getAddInfoAPI = async (movieId, addInfoType) => {
   const queryString = `${BASE_URL}movie/${movieId}/${addInfoType}?api_key=${API_KEY}`;
-  console.log(queryString, 'queryString getAddInfoAPI');
+  // console.log(queryString, 'queryString getAddInfoAPI');
   const result = await fetchData(queryString);
 
   return result;
