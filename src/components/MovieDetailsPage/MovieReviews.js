@@ -32,7 +32,7 @@ class MovieReviews extends Component {
               const { id, author, content } = review;
               return (
                 <li key={id} className="ReviewsListItem">
-                  <div className="CastItemInfo">
+                  <div className="ReviewsItemInfo">
                     <p className="ReviewsItemAuthor">{author}</p>
                     <p className="ReviewsItemText">{content}</p>
                   </div>

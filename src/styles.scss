@@ -87,15 +87,64 @@ img {
     }
   }
 
-  .CastItemInfo {
+  .ReviewsItemInfo {
     border-bottom: solid 1px darkgray;
+  }
+
+  .SearchForm {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 5px;
+
+    &-input {
+      width: 100%;
+      height: 32px;
+      font: inherit;
+      border-bottom: solid 1px darkgray;
+      outline: none;
+      outline-color: currentcolor;
+      outline-style: none;
+      outline-width: medium;
+      padding-left: 4px;
+      padding-right: 4px;
+      border-top: none;
+      border-right: none;
+      border-left: none;
+    }
+
+    &-button {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      border: 0;
+      background-image: url('https://image.flaticon.com/icons/svg/149/149852.svg');
+      background-size: 50%;
+      background-repeat: no-repeat;
+      background-position: center;
+      cursor: pointer;
+      outline: none;
+
+      &-label {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        clip-path: inset(50%);
+        border: 0;
+      }
+    }
   }
 
   .Footer {
     display: flex;
     align-items: baseline;
     margin-top: 20px;
-    justify-content: end;
+    justify-content: flex-end;
 
     .CopyrightLogo {
       height: 10px;
@@ -105,63 +154,10 @@ img {
       margin-right: 5px;
     }
   }
-}
 
-.SearchForm {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  max-width: 400px;
-  margin-top: 5px;
-
-  &-input {
-    width: 100%;
-    height: 32px;
-    font: inherit;
-    border-bottom: solid 1px darkgray;
-    outline: none;
-    outline-color: currentcolor;
-    outline-style: none;
-    outline-width: medium;
-    padding-left: 4px;
-    padding-right: 4px;
-    border-top: none;
-    border-right: none;
-    border-left: none;
+  .ErrorText {
+    font-size: 22px;
+    text-align: center;
+    color: #3f51b5;
   }
-
-  &-button {
-    display: inline-block;
-    width: 32px;
-    height: 32px;
-    border: 0;
-    background-image: url('https://image.flaticon.com/icons/svg/149/149852.svg');
-    background-size: 50%;
-    background-repeat: no-repeat;
-    background-position: center;
-    cursor: pointer;
-    outline: none;
-
-    &-label {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      clip-path: inset(50%);
-      border: 0;
-    }
-  }
-}
-
-.SearchForm-button .Loader {
-  margin: 0 auto;
-}
-
-.ErrorText {
-  font-size: 22px;
-  text-align: center;
-  color: #3f51b5;
 }
