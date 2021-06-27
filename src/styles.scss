@@ -1,0 +1,167 @@
+html {
+  box-sizing: border-box;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell,
+    'Helvetica Neue', sans-serif;
+  color: #212121;
+  background-color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.App {
+  .Header {
+    box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.3);
+
+    .NavMenuList {
+      display: flex;
+      list-style: none;
+      margin-top: 10px;
+      margin-left: 10px;
+      margin-bottom: 0px;
+
+      .NavMenuItem:not(:last-child) {
+        margin-right: 15px;
+      }
+
+      .NavLink {
+        height: 35px;
+        display: block;
+        color: black;
+        font-weight: 600;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .NavLink--active {
+        color: orangered;
+      }
+    }
+  }
+
+  .MovieDetails {
+    display: flex;
+    padding-bottom: 15px;
+    border-bottom: solid 1px darkgray;
+
+    .MoviePoster {
+      margin-right: 30px;
+    }
+  }
+  .AddInfoMenuList {
+    border-bottom: solid 1px darkgray;
+    padding-bottom: 16px;
+  }
+  .CastListItem {
+    display: flex;
+
+    &:not(:last-child) {
+      margin-bottom: 25px;
+    }
+
+    .CastItemImage {
+      width: 92px;
+      margin-right: 20px;
+    }
+    .CastItemTitle {
+      font-weight: 600;
+    }
+  }
+
+  .CastItemInfo {
+    border-bottom: solid 1px darkgray;
+  }
+
+  .Footer {
+    display: flex;
+    align-items: baseline;
+    margin-top: 20px;
+    justify-content: end;
+
+    .CopyrightLogo {
+      height: 10px;
+    }
+
+    .CopyrightText {
+      margin-right: 5px;
+    }
+  }
+}
+
+.SearchForm {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  margin-top: 5px;
+
+  &-input {
+    width: 100%;
+    height: 32px;
+    font: inherit;
+    border-bottom: solid 1px darkgray;
+    outline: none;
+    outline-color: currentcolor;
+    outline-style: none;
+    outline-width: medium;
+    padding-left: 4px;
+    padding-right: 4px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+  }
+
+  &-button {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    border: 0;
+    background-image: url('https://image.flaticon.com/icons/svg/149/149852.svg');
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    outline: none;
+
+    &-label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      clip-path: inset(50%);
+      border: 0;
+    }
+  }
+}
+
+.SearchForm-button .Loader {
+  margin: 0 auto;
+}
+
+.ErrorText {
+  font-size: 22px;
+  text-align: center;
+  color: #3f51b5;
+}

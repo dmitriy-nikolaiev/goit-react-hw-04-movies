@@ -38,10 +38,6 @@ class HomePage extends Component {
     } catch (error) {
       console.error(error);
       // this.setState(() => ({ error: error.toString() }));
-      // } finally {
-      //   this.setState({ isLoading: false });
-
-      //   // this.scrollToHandler();
     }
   };
 

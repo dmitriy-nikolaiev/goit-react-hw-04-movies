@@ -2,6 +2,8 @@ import { Component } from 'react';
 
 import { getAddInfoAPI } from '../../services/apiService';
 
+import noPhoto from '../../images/no_photo.png';
+
 class MovieCast extends Component {
   state = {
     cast: [],
@@ -11,7 +13,6 @@ class MovieCast extends Component {
     const { movieId } = this.props.match.params;
     try {
       const response = await getAddInfoAPI(movieId, 'credits');
-      // console.log(response, 'response MovieCast');
       this.setState(() => ({ ...response }));
     } catch (error) {
       console.error(error);
@@ -30,7 +31,7 @@ class MovieCast extends Component {
               <li key={cast_id} className="CastListItem">
                 <img
                   className="CastItemImage"
-                  src={profile_path ? 'https://image.tmdb.org/t/p/w92' + profile_path : ''}
+                  src={profile_path ? 'https://image.tmdb.org/t/p/w92' + profile_path : noPhoto}
                   alt={profile_path ? name : 'No photo'}
                 ></img>
                 <div className="CastItemInfo">

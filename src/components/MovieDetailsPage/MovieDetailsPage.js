@@ -42,6 +42,7 @@ class MovieDetailsPage extends Component {
           <img
             src={poster_path ? 'https://image.tmdb.org/t/p/w185' + poster_path : ''}
             alt={title + ' poster'}
+            className="MoviePoster"
           ></img>
           <div>
             <h2 className="MovieTitle">{`${title} (${new Date(release_date).getFullYear()})`}</h2>
@@ -54,7 +55,7 @@ class MovieDetailsPage extends Component {
         </div>
         <div className="AddInfoMenu">
           <p>Additional information</p>
-          <ul>
+          <ul className="AddInfoMenuList">
             <li>
               <Link to={`/movies/${id}/cast`} replace className="Link">
                 {/* <Link to={`/movies/${id}/cast`} className="Link"> */}
