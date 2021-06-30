@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
-
+import queryString from 'query-string';
 import { searchMoviesAPI } from '../../services/apiService';
 
 class MoviesPage extends Component {
@@ -12,14 +12,32 @@ class MoviesPage extends Component {
     error: null,
   };
   maxPages = 0;
-  // error = '';
-  // componentDidUpdate(prevState) {
-  //   if (prevState.searchString !== this.state.searchString || prevState.page !== this.state.page) {
-  //     console.log(prevState.searchString, 'prevState.searchString');
-  //     console.log(this.state.searchString, 'this.state.searchString');
-  //     // this.movieSearch();
-  //   }
-  // }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('MoviesPage DidUpdate');
+
+    if (prevState.searchString !== this.state.searchString || prevState.page !== this.state.page) {
+      this.props.history.push({
+        pathname: this.props.location.pathname,
+        search: `query=${this.state.searchString}`,
+      });
+
+      this.movieSearch();
+    }
+  }
+
+  componentDidMount() {
+    console.log('MoviesPage DidMount');
+    if (this.props.location.search) {
+      const queryParams = queryString.parse(this.props.location.search);
+      this.setState(() => {
+        return {
+          searchString: queryParams.query,
+        };
+      });
+      // this.movieSearch();
+    }
+  }
 
   changeHandler = (e) => {
     this.setState(() => ({ inputValue: e.target.value }));
@@ -28,25 +46,29 @@ class MoviesPage extends Component {
   submitHandler = (e) => {
     e.preventDefault();
 
-    // console.log(this.state.inputValue, 'inputValue');
-
     if (this.state.inputValue.trim() !== '') {
-      this.setState(
-        () => ({
-          searchString: this.state.inputValue.trim(),
-          error: null,
-        }),
-        this.movieSearch
-      );
+      // this.setState(
+      //   () => ({
+      //     searchString: this.state.inputValue.trim(),
+      //     error: null,
+      //   }),
+      //   this.movieSearch
+      // );
+      this.setState(() => ({
+        searchString: this.state.inputValue.trim(),
+        error: null,
+      }));
+
+      // this.props.history.push({
+      //   pathname: this.props.location.pathname,
+      //   search: `query=${this.state.inputValue.trim()}`,
+      // });
     }
   };
 
   movieSearch = async () => {
     const { searchString, page } = this.state;
-    // if (searchString === '') {
-    //   console.log('searchString Empty');
-    //   return;
-    // }
+
     try {
       const response = await searchMoviesAPI(searchString, page);
       // console.log(response, 'response MoviesPage');
@@ -77,6 +99,7 @@ class MoviesPage extends Component {
 
   render() {
     const { movies, error, inputValue } = this.state;
+
     return (
       <div className="MoviesContainer">
         <form className="SearchForm" onSubmit={this.submitHandler}>
@@ -100,7 +123,14 @@ class MoviesPage extends Component {
             {movies.map((movie) => {
               return (
                 <li key={movie.id} className="MoviesListItem">
-                  <Link to={`/movies/${movie.id}`} className="Link">
+                  <Link
+                    to={`/movies/${movie.id}`}
+                    // to={{
+                    //   pathname: `/movies/${movie.id}`,
+                    //   state: { from: this.props.location },
+                    // }}
+                    className="Link"
+                  >
                     <span className="MoviesListItemTitle">
                       {movie.title}
                       {movie.release_date ? ` (${new Date(movie.release_date).getFullYear()})` : ''}

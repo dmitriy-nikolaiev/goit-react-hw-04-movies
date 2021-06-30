@@ -31,8 +31,8 @@ class MovieDetailsPage extends Component {
   }
 
   render() {
-    // console.log(this.props, 'props MovieDetails');
     const { id, poster_path, title, genres, release_date, overview, vote_average } = this.state;
+
     return (
       <div className="MovieDetailsContainer">
         <button type="button" onClick={this.props.history.goBack} className="ButtonGoBack">
