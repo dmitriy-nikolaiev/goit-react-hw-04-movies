@@ -23,10 +23,7 @@ export const getTrendingAPI = async () => {
 
 export const getMovieDetailsAPI = async (movieId) => {
   const queryString = `${BASE_URL}movie/${movieId}?api_key=${API_KEY}`;
-  // export const getMovieDetailsAPI = async (movieId, addInfo = '', page = 0) => {
-  //   const queryString = `${BASE_URL}movie/${movieId}${!addInfo || '/' + addInfo}?api_key=${API_KEY}${
-  //     page === 0 ? '' : page
-  //   }`;
+
   const result = await fetchData(queryString);
 
   return result;
@@ -34,7 +31,7 @@ export const getMovieDetailsAPI = async (movieId) => {
 
 export const getAddInfoAPI = async (movieId, addInfoType) => {
   const queryString = `${BASE_URL}movie/${movieId}/${addInfoType}?api_key=${API_KEY}`;
-  // console.log(queryString, 'queryString getAddInfoAPI');
+
   const result = await fetchData(queryString);
 
   return result;
@@ -47,6 +44,13 @@ export const searchMoviesAPI = async (searchString, page = 1) => {
 
   return result;
 };
+
+// export const getConfigurationAPI = async () => {
+//   const queryString = `${BASE_URL}configuration?api_key=${API_KEY}`;
+//   const result = await fetchData(queryString);
+
+//   return result;
+// };
 
 // import axios from 'axios';
 

@@ -14,8 +14,6 @@ class MoviesPage extends Component {
   maxPages = 0;
 
   componentDidUpdate(prevProps, prevState) {
-    console.log('MoviesPage DidUpdate');
-
     if (prevState.searchString !== this.state.searchString || prevState.page !== this.state.page) {
       this.props.history.push({
         pathname: this.props.location.pathname,
@@ -27,7 +25,6 @@ class MoviesPage extends Component {
   }
 
   componentDidMount() {
-    console.log('MoviesPage DidMount');
     if (this.props.location.search) {
       const queryParams = queryString.parse(this.props.location.search);
       this.setState(() => {
@@ -71,7 +68,7 @@ class MoviesPage extends Component {
 
     try {
       const response = await searchMoviesAPI(searchString, page);
-      // console.log(response, 'response MoviesPage');
+
       if (response.total_results !== 0) {
         this.maxPages = response.total_pages;
 
